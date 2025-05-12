@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Authentication Error - Salesforce MCP Server</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            line-height: 1.6;
+            color: #333;
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        h1, h2, h3 {
+            color: #0070d2; /* Salesforce blue */
+        }
+        .container {
+            background-color: #f8f8f8;
+            border-radius: 5px;
+            padding: 20px;
+            margin-bottom: 20px;
+            border: 1px solid #ddd;
+            margin-top: 50px;
+        }
+        .error-icon {
+            font-size: 70px;
+            color: #c23934; /* Salesforce red */
+            margin-bottom: 20px;
+        }
+        .button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #0070d2;
+            color: white;
+            border-radius: 5px;
+            margin-top: 20px;
+            text-decoration: none;
+        }
+        .error-message {
+            background-color: #fff;
+            border-left: 4px solid #c23934;
+            padding: 10px 15px;
+            margin: 20px 0;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="error-icon">?</div>
+        <h1>Authentication Error</h1>
+        <p>There was a problem authenticating with Salesforce.</p>
+        <div class="error-message" id="error-details">Loading error details...</div>
+        <p>Please try again or contact your administrator if the problem persists.</p>
+        <a href="/" class="button">Return to Home</a>
+    </div>
+
+    <script>
+        // Parse error from query string
+        const urlParams = new URLSearchParams(window.location.search);
+        const error = urlParams.get('error');
+        
+        if (error) {
+            document.getElementById('error-details').textContent = decodeURIComponent(error);
+        } else {
+            document.getElementById('error-details').textContent = "Unknown authentication error";
+        }
+        
+        // Notify opener window (if any) about authentication error
+        if (window.opener) {
+            window.opener.postMessage({
+                type: 'auth_error',
+                error: error
+            }, '*');
+        }
+    </script>
+</body>
+</html>
