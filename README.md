@@ -1,106 +1,89 @@
 # Salesforce MCP Server
 
-A comprehensive middleware server for Salesforce development, integration, and automation using Metadata API and Conversational Programming techniques.
+A middleware bridge allowing conversational AI assistants like Claude to interact with Salesforce. This server acts as an intermediary that translates natural language requests into Salesforce API operations, enabling a seamless conversational interface to your Salesforce data and metadata.
 
-## ? Features
+## ? Bridge between AI and Salesforce
 
-### Core Connectivity
-- **Multi-Org Authentication** - Connect to multiple Salesforce orgs (Production, Sandbox, Scratch Orgs)
+The Salesforce MCP (Metadata API/Conversational Programming) Server enables you to:
+
+- Ask your AI assistant to connect to Salesforce and perform actions
+- Use natural language to query, create, update and analyze Salesforce data
+- Navigate between records with conversational commands
+- Generate metadata components through natural language descriptions
+- Execute Apex code and automation through simple prompts
+
+## ? Example Use Cases
+
+```
+You: "Connect to my production Salesforce org"
+[System performs OAuth authentication]
+
+You: "Query the top 10 accounts by created date"
+[System returns account list]
+
+You: "Open the first account in that list and show me its related contacts"
+[System retrieves and displays the related contacts]
+
+You: "Generate a trigger that updates opportunities when accounts change"
+[System generates and displays Apex code]
+
+You: "Create a new field on Contact called Training Status"
+[System creates new metadata]
+```
+
+## ? Core Features
+
+### Authentication & Connectivity
+- **Multi-Org Authentication** - Connect to production, sandbox, and scratch orgs
 - **OAuth 2.0 Flow Support** - Web server, JWT, and device authentication flows
 - **Session Management** - Secure storage and refresh of access tokens
 - **Connection Profiles** - Save and switch between different org connections
 
 ### Data Operations
-- **Universal Object Querying** - Query any standard or custom object with SOQL
-- **Bulk Data Operations** - Support for Bulk API 2.0 for large dataset operations
-- **SOSL Search Integration** - Full-text search across multiple objects
-- **Composite Requests** - Execute multiple operations in a single transaction
-- **CDC Event Capture** - Listen to Change Data Capture events
+- **Conversational Querying** - Translate natural language to SOQL
+- **Object Navigation** - Browse related records with simple commands
+- **Record Retrieval** - Get records by ID, name or other unique identifiers
+- **Record Creation/Updates** - Create and update records via conversation
+- **Record Search** - Find records across multiple objects with SOSL
 
-### Metadata Management
-- **Metadata Deployment** - Deploy metadata components to orgs
-- **Metadata Retrieval** - Extract and download org metadata
-- **Diff & Compare** - Compare metadata between orgs or revisions
-- **Conversational Metadata Creation** - Generate metadata from natural language prompts
-- **Custom Metadata Type Management** - CRUD operations for custom metadata
+### Metadata Operations
+- **Natural Language Metadata Creation** - Generate fields, objects, and components
+- **Metadata Retrieval** - View and analyze org metadata with simple requests
+- **Apex Code Generation** - Create Apex classes, triggers, and more via conversation
+- **Metadata Deployment** - Deploy components to orgs with natural commands
 
-### Development Tools
-- **Apex Code Execution** - Run anonymous Apex code blocks
-- **Apex Test Execution** - Run and retrieve results of Apex tests
-- **Debug Log Management** - Retrieve, filter and analyze debug logs
-- **Org Limit Monitoring** - Check API limits and governance limits
-- **Metadata Validation** - Pre-validate deployments before executing them
-
-### Integration Capabilities
-- **Webhook Support** - Create inbound and outbound webhooks
-- **API Gateway** - Expose Salesforce data through custom REST endpoints
-- **External Services Integration** - Connect to third-party APIs and services
-- **Event-Driven Architecture** - Support for Platform Events and external event processing
-- **Data Sync Patterns** - Implement bidirectional sync between Salesforce and external systems
-
-### AI-Assisted Development
-- **Code Generation** - Generate Apex, LWC, or Flow code from descriptions
-- **Schema Recommendations** - Get AI-powered suggestions for object/field configurations
-- **Metadata Documentation** - Auto-generate documentation for metadata components
-- **Prompt-Based Queries** - Convert natural language to SOQL/SOSL queries
-- **Intelligent Data Mapping** - AI assistance for mapping between different data structures
-
-### Security Features
-- **Field-Level Security Analysis** - Identify and report on FLS configurations
-- **Permission Set Management** - Create and modify permission sets programmatically
-- **Profile Management** - Analyze and optimize profile configurations
-- **Security Health Check** - Run automated security scanning
-- **Encryption Support** - Handle Shield Platform Encryption requirements
-
-### DevOps & Automation
-- **CI/CD Pipeline Integration** - Hooks for GitHub Actions, Jenkins, etc.
-- **Source Control Integration** - Git-friendly metadata format and operations
-- **Automated Testing** - Run test suites and generate coverage reports
-- **Deployment Scheduling** - Schedule metadata deployments for specific times
-- **Release Management** - Track and manage component versions across environments
-
-### Performance & Monitoring
-- **Request Throttling** - Respect and manage API limits
-- **Performance Analytics** - Track query and operation performance
-- **Health Monitoring** - Monitor connection status and server health
-- **Audit Logging** - Comprehensive logging of all operations
-- **Error Handling & Retry Logic** - Robust error handling with configurable retry strategies
-
-### UI & Visualization
-- **Interactive Query Builder** - Visual interface for building SOQL queries
-- **Schema Explorer** - Visual browsing of object relationships and fields
-- **Data Viewer** - Tabular and relational data viewing
-- **Metadata Component Explorer** - Browse and search metadata components
-- **Environment Dashboard** - Overview of connected orgs and their status
+### AI Integration
+- **Context Awareness** - Maintain context between requests
+- **Command Recognition** - Parse and understand Salesforce-specific commands
+- **Intent Detection** - Map natural language to appropriate Salesforce API calls
+- **Entity Extraction** - Identify objects, fields, and values in requests
+- **Response Formatting** - Present Salesforce data in a conversational manner
 
 ## ?? Installation
 
 ```bash
 git clone https://github.com/santoshprolocity/salesforce-mcp-server.git
 cd salesforce-mcp-server
-npm install
-npm start
+pip install -r requirements.txt
+python app.py
 ```
 
-## ? Documentation
+## ? Connecting to AI Assistants
 
-Detailed documentation for each feature is available in the [/docs](/docs) directory.
+The server exposes RESTful endpoints that can be called by AI assistants:
 
-## ? API Reference
+1. **Authentication**: `/api/auth/*` - Endpoints for connecting to Salesforce orgs
+2. **Data Operations**: `/api/data/*` - Endpoints for data querying and manipulation
+3. **Metadata Operations**: `/api/metadata/*` - Endpoints for metadata management
+4. **Natural Language Processing**: `/api/nlp/*` - Endpoints for parsing requests
+5. **AI Context Management**: `/api/context/*` - Endpoints for managing conversation context
 
-The server exposes a RESTful API with the following main endpoints:
-
-- `/api/auth/*` - Authentication operations
-- `/api/data/*` - Data operations (query, search, CRUD)
-- `/api/metadata/*` - Metadata operations
-- `/api/apex/*` - Apex code execution endpoints
-- `/api/ai/*` - AI-assisted development features
-
-## ? Quick Start
+## ? Getting Started
 
 1. Configure your environment variables in `.env`
-2. Connect to your Salesforce org
-3. Start querying objects or creating metadata
+2. Start the server with `python app.py`
+3. Connect your AI assistant to the server APIs
+4. Start asking your AI to interact with Salesforce!
 
 ## ? Contributing
 
